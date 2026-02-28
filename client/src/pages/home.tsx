@@ -208,7 +208,7 @@ function DividerLine() {
 
 function LogoMarquee() {
   return (
-    <section className="bg-[#0A0A0A] py-10 overflow-hidden" data-testid="section-clients">
+    <section className="relative bg-[#0A0A0A] py-10 overflow-hidden" style={{ zIndex: projects.length + 10 }} data-testid="section-clients">
       <DividerLine />
       <div className="py-10 relative">
         <div className="flex animate-marquee whitespace-nowrap">
@@ -230,101 +230,114 @@ function LogoMarquee() {
   );
 }
 
-function ProjectCard({
+function ProjectSlide({
   project,
   index,
+  total,
+  containerProgress,
 }: {
   project: (typeof projects)[0];
   index: number;
+  total: number;
+  containerProgress: any;
 }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const segmentSize = 1 / total;
+  const start = index * segmentSize;
+  const end = start + segmentSize;
+  const mid = start + segmentSize * 0.5;
+
+  const clipPercent = useTransform(
+    containerProgress,
+    [start, start + segmentSize * 0.35],
+    [100, 0]
+  );
+  const clipPath = useTransform(clipPercent, (v: number) => `inset(${v}% 0 0 0)`);
+
+  const textOpacity = useTransform(
+    containerProgress,
+    [start + segmentSize * 0.2, start + segmentSize * 0.4, mid + segmentSize * 0.15, end - segmentSize * 0.05],
+    [0, 1, 1, index === total - 1 ? 1 : 0]
+  );
+  const textY = useTransform(
+    containerProgress,
+    [start + segmentSize * 0.2, start + segmentSize * 0.4],
+    [30, 0]
+  );
+  const imgScale = useTransform(
+    containerProgress,
+    [start, end],
+    [1.1, 1.0]
+  );
 
   return (
     <motion.div
-      ref={ref}
-      className="group relative overflow-hidden cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="absolute inset-0"
+      style={{
+        zIndex: index + 1,
+        clipPath: index === 0 ? "none" : clipPath,
+      }}
       data-testid={`card-project-${project.slug}`}
     >
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden">
         <motion.img
           src={project.image}
           alt={project.title}
           className="w-full h-full object-cover"
-          animate={{ scale: isHovered ? 1.05 : 1 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{ scale: imgScale }}
         />
-        <div className="absolute inset-0 bg-[#0A0A0A]/40 group-hover:bg-[#0A0A0A]/20 transition-all duration-500" />
-
-        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h3
-                className="font-heading text-white text-2xl md:text-3xl lg:text-4xl uppercase tracking-[-0.01em] leading-tight"
-                data-testid={`text-project-title-${project.slug}`}
-              >
-                {project.title}
-              </h3>
-              <div className="flex items-center gap-3 mt-2">
-                <span className="text-white/50 text-xs tracking-[0.1em] uppercase">
-                  {project.year}
-                </span>
-                <span className="w-1 h-1 rounded-full bg-white/30" />
-                <span className="text-white/50 text-xs tracking-[0.1em] uppercase">
-                  {project.category}
-                </span>
-              </div>
-            </div>
-            <motion.div
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center flex-shrink-0"
-              animate={{
-                scale: isHovered ? 1 : 0.8,
-                opacity: isHovered ? 1 : 0,
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 14 14"
-                fill="none"
-                className="text-white"
-              >
-                <path
-                  d="M1 13L13 1M13 1H5M13 1V9"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </motion.div>
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-[#0A0A0A]/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/20" />
       </div>
+
+      <motion.div
+        className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24"
+        style={{ opacity: textOpacity, y: textY, zIndex: 10 }}
+      >
+        <h2
+          className="font-heading text-white text-4xl md:text-6xl lg:text-7xl uppercase tracking-[-0.01em] text-center leading-[0.95]"
+          data-testid={`text-project-title-${project.slug}`}
+        >
+          {project.title}
+        </h2>
+        <div className="flex items-center gap-3 mt-4">
+          <span className="text-white/50 text-xs tracking-[0.15em] uppercase">
+            {project.year}
+          </span>
+          <span className="text-white/30 text-xs">&middot;</span>
+          <span className="text-white/50 text-xs tracking-[0.15em] uppercase">
+            {project.category}
+          </span>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
 
 function ProjectsSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
   return (
     <section
       id="projects"
-      className="bg-[#0A0A0A] py-16 md:py-24 px-4 md:px-6"
+      ref={containerRef}
+      className="relative"
+      style={{ height: `${(projects.length + 1) * 100}vh` }}
       data-testid="section-projects"
     >
-      <div className="max-w-[1600px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} index={i} />
-          ))}
-        </div>
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {projects.map((project, i) => (
+          <ProjectSlide
+            key={project.slug}
+            project={project}
+            index={i}
+            total={projects.length}
+            containerProgress={scrollYProgress}
+          />
+        ))}
       </div>
     </section>
   );
@@ -334,7 +347,8 @@ function AboutSection() {
   return (
     <section
       id="about"
-      className="bg-[#0A0A0A] py-20 md:py-32 px-6 md:px-10"
+      className="relative bg-[#0A0A0A] py-20 md:py-32 px-6 md:px-10"
+      style={{ zIndex: projects.length + 10 }}
       data-testid="section-about"
     >
       <div className="max-w-[1400px] mx-auto">
@@ -363,7 +377,8 @@ function AboutSection() {
 function ServicesSection() {
   return (
     <section
-      className="bg-[#0A0A0A] py-16 md:py-24 px-6 md:px-10"
+      className="relative bg-[#0A0A0A] py-16 md:py-24 px-6 md:px-10"
+      style={{ zIndex: projects.length + 10 }}
       data-testid="section-services"
     >
       <div className="max-w-[1400px] mx-auto">
@@ -411,7 +426,8 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-[#0A0A0A] py-24 md:py-40 px-6 md:px-10"
+      className="relative bg-[#0A0A0A] py-24 md:py-40 px-6 md:px-10"
+      style={{ zIndex: projects.length + 10 }}
       data-testid="section-contact"
     >
       <div className="max-w-[1400px] mx-auto text-center">
@@ -462,7 +478,8 @@ function ContactSection() {
 function Footer() {
   return (
     <footer
-      className="bg-[#0A0A0A] py-8 px-6 md:px-10"
+      className="relative bg-[#0A0A0A] py-8 px-6 md:px-10"
+      style={{ zIndex: projects.length + 10 }}
       data-testid="footer"
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
