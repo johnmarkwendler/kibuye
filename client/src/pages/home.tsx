@@ -18,14 +18,11 @@ const services = [
 ];
 
 const clientLogos = [
-  "SAN DIEGO",
-  "CHICAGO",
   "BRUSSELS",
   "BUJUMBURA",
   "DAR ES SALAAM",
   "KILIMANJARO",
   "DOHA",
-  "DALLAS",
 ];
 
 function LiveClock() {
