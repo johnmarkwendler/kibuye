@@ -71,7 +71,7 @@ function Navbar() {
           className="font-heading text-white text-sm tracking-[0.2em] uppercase"
           data-testid="link-home"
         >
-          AMBER
+          AME
         </button>
         <div className="flex items-center gap-8 md:gap-12">
           <button
@@ -79,7 +79,7 @@ function Navbar() {
             className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
             data-testid="link-projects"
           >
-            Projects
+            Places
           </button>
           <button
             onClick={() => scrollTo("#about")}
@@ -93,7 +93,7 @@ function Navbar() {
             className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
             data-testid="link-contact"
           >
-            Let's Talk
+            Get Involved
           </button>
         </div>
       </div>
@@ -140,13 +140,13 @@ function HeroSection() {
           className="font-heading text-white text-[12vw] md:text-[10vw] lg:text-[9vw] leading-[0.9] tracking-[-0.02em] uppercase text-center"
           data-testid="text-hero-title"
         >
-          AMBER STUDIO
+          Destination: Kibuye
         </h1>
       </motion.div>
 
       <div className="absolute bottom-0 left-0 right-0 z-10 px-6 md:px-10 pb-6">
         <div className="flex items-end justify-between gap-4 text-white/60 text-xs tracking-[0.1em] uppercase">
-          <span data-testid="text-tagline">Creative Production Studio</span>
+          <span data-testid="text-tagline">Field journal from Burundi</span>
           <span data-testid="text-location" className="hidden md:block">
             Los Angeles, California
           </span>
@@ -500,7 +500,7 @@ function ContactSection() {
               className="font-heading text-white text-4xl md:text-6xl lg:text-8xl uppercase tracking-[-0.02em]"
               data-testid="text-contact-heading"
             >
-              Let's Talk
+              Get Involved
             </h2>
             <p
               className="text-white/50 text-sm md:text-base mt-6 max-w-md mx-auto leading-relaxed"
@@ -534,9 +534,9 @@ function Footer() {
       data-testid="footer"
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
-        <span>Amber Studio</span>
+        <span>Field journal from Burundi</span>
         <span>Los Angeles, California</span>
-        <span>&copy; 2025 All Rights Reserved</span>
+        <span>&copy; 2025 AME Fund</span>
       </div>
     </footer>
   );

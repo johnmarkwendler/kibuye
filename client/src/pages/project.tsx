@@ -19,7 +19,7 @@ function Navbar() {
           className="font-heading text-white text-sm tracking-[0.2em] uppercase"
           data-testid="link-home"
         >
-          AMBER
+          AME
         </Link>
         <div className="flex items-center gap-8 md:gap-12">
           <Link
@@ -27,7 +27,7 @@ function Navbar() {
             className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
             data-testid="link-projects"
           >
-            Projects
+            Places
           </Link>
           <Link
             href="/"
@@ -41,7 +41,7 @@ function Navbar() {
             className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
             data-testid="link-contact"
           >
-            Let's Talk
+            Get Involved
           </Link>
         </div>
       </div>
@@ -275,9 +275,9 @@ export default function ProjectPage() {
         data-testid="footer"
       >
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
-          <span>Amber Studio</span>
+          <span>Field journal from Burundi</span>
           <span>Los Angeles, California</span>
-          <span>&copy; 2025 All Rights Reserved</span>
+          <span>&copy; 2025 AME Fund</span>
         </div>
       </footer>
     </div>
