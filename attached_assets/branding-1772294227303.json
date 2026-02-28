@@ -1,0 +1,105 @@
+{
+  "colorScheme": "dark",
+  "fonts": [
+    {
+      "family": "Inter",
+      "role": "body"
+    },
+    {
+      "family": "Antonio",
+      "role": "heading"
+    }
+  ],
+  "colors": {
+    "primary": "#0000EE",
+    "accent": "#0000EE",
+    "background": "#0A0A0A",
+    "textPrimary": "#0A0A0A",
+    "link": "#0000EE"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Inter",
+      "heading": "Antonio"
+    },
+    "fontStacks": {
+      "heading": [
+        "Antonio",
+        "sans-serif"
+      ],
+      "body": [
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Antonio",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "186.233px",
+      "h2": "64px",
+      "body": "16px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "buttonPrimary": {
+      "background": "#FFFFFF",
+      "textColor": "#0000EE",
+      "borderRadius": "10px",
+      "borderRadiusCorners": {
+        "topLeft": "10px",
+        "topRight": "10px",
+        "bottomRight": "10px",
+        "bottomLeft": "10px"
+      },
+      "shadow": "rgba(0, 0, 0, 0.02) 0px 0.602187px 0.602187px 0px, rgba(0, 0, 0, 0.06) 0px 2.28853px 2.28853px 0px, rgba(0, 0, 0, 0.25) 0px 10px 10px 0px"
+    }
+  },
+  "images": {
+    "logo": null,
+    "favicon": "File saved at: attached_assets/favicon.png",
+    "ogImage": "File saved at: attached_assets/ogImage.jpg"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 0,
+      "text": "Buy Template - $69",
+      "reasoning": "The 'Buy Template - $69' button is likely the primary CTA because it involves a purchase action, which is typically the main goal of a product page."
+    },
+    "secondary": {
+      "index": 1,
+      "text": "More Templates",
+      "reasoning": "The 'More Templates' button serves as a secondary action, offering additional options without directly leading to a purchase."
+    },
+    "confidence": 0.9
+  },
+  "personality": {
+    "tone": "minimalist",
+    "energy": "medium",
+    "targetAudience": "videographers and creatives"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.9,
+    "colors": 0.9,
+    "overall": 0.9
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": false,
+      "llmSucceeded": false,
+      "finalSource": "none"
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}
