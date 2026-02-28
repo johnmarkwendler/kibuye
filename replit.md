@@ -13,7 +13,7 @@ Preferred communication style: Simple, everyday language.
 ### Frontend Architecture
 
 - **Framework**: React 18 with TypeScript, bundled via Vite
-- **Routing**: `wouter` — single route `/` (Home page) and catch-all 404
+- **Routing**: `wouter` — routes: `/` (Home), `/projects/:slug` (Project detail), and catch-all 404
 - **State/Data Fetching**: TanStack React Query v5
 - **UI Components**: shadcn/ui component library on Radix UI primitives
 - **Styling**: Tailwind CSS with CSS custom properties; dark theme by default
@@ -25,7 +25,8 @@ Preferred communication style: Simple, everyday language.
 
 - **Hero Section**: Full-screen background image with parallax scroll, "AMBER STUDIO" heading, live LA clock, bottom info bar
 - **Logo Marquee**: Infinite horizontal scroll of client brand names with CSS animation
-- **Full-Screen Stacking Projects**: 6 projects displayed as full-viewport slides using a sticky container with clip-path reveal animation. Each project scrolls in from the bottom covering the previous one. Uses a tall container (`(projects + 1) * 100vh`) with a sticky `h-screen` viewport inside.
+- **Full-Screen Stacking Projects**: 6 projects displayed as full-viewport slides using a sticky container with clip-path reveal animation. Each project scrolls in from the bottom covering the previous one. Uses a tall container (`(projects + 1) * 100vh`) with a sticky `h-screen` viewport inside. Custom "VIEW" cursor follows mouse on project slides; clicking navigates to project detail page.
+- **Project Detail Pages**: `/projects/:slug` — full-screen hero image, project metadata (title, category, client, year), overview/description, credits grid, and "More Projects" section linking to other projects.
 - **About Section**: Large Antonio-font statement text with scroll-triggered fade-in
 - **Services Section**: Grid of 10 services with staggered reveal animations
 - **Contact Section**: "Let's Talk" CTA with email link

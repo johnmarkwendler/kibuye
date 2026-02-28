@@ -1,51 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useLocation } from "wouter";
 import { useSmoothScroll, useLenisScrollTo } from "@/components/smooth-scroll";
-
-const projects = [
-  {
-    title: "Of Earth",
-    year: "2022",
-    category: "Commercial",
-    image: "/images/project-of-earth.png",
-    slug: "of-earth",
-  },
-  {
-    title: "After the Quiet",
-    year: "2023",
-    category: "Short Film",
-    image: "/images/project-after-quiet.png",
-    slug: "after-the-quiet",
-  },
-  {
-    title: "Echoes of Us",
-    year: "2023",
-    category: "Wedding Film",
-    image: "/images/project-echoes-of-us.png",
-    slug: "echoes-of-us",
-  },
-  {
-    title: "Still Breathing",
-    year: "2025",
-    category: "Brand Film",
-    image: "/images/project-still-breathing.png",
-    slug: "still-breathing",
-  },
-  {
-    title: "Scent & Silence",
-    year: "2022",
-    category: "Commercial",
-    image: "/images/project-scent-silence.png",
-    slug: "scent-silence",
-  },
-  {
-    title: "The Light Between",
-    year: "2025",
-    category: "Short Film",
-    image: "/images/project-light-between.png",
-    slug: "the-light-between",
-  },
-];
+import { projects } from "@/lib/projects";
 
 const services = [
   "Brand Films",
@@ -232,11 +189,13 @@ function ProjectSlide({
   index,
   total,
   containerProgress,
+  onNavigate,
 }: {
   project: (typeof projects)[0];
   index: number;
   total: number;
   containerProgress: any;
+  onNavigate: (slug: string) => void;
 }) {
   const segmentSize = 1 / total;
   const start = index * segmentSize;
@@ -268,11 +227,12 @@ function ProjectSlide({
 
   return (
     <motion.div
-      className="absolute inset-0"
+      className="absolute inset-0 cursor-none"
       style={{
         zIndex: index + 1,
         clipPath: index === 0 ? "none" : clipPath,
       }}
+      onClick={() => onNavigate(project.slug)}
       data-testid={`card-project-${project.slug}`}
     >
       <div className="absolute inset-0 overflow-hidden">
@@ -287,7 +247,7 @@ function ProjectSlide({
       </div>
 
       <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24"
+        className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24 pointer-events-none"
         style={{ opacity: textOpacity, y: textY, zIndex: 10 }}
       >
         <h2
@@ -310,12 +270,79 @@ function ProjectSlide({
   );
 }
 
+function ViewCursor() {
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  const springX = useSpring(cursorX, { stiffness: 300, damping: 30 });
+  const springY = useSpring(cursorY, { stiffness: 300, damping: 30 });
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [cursorX, cursorY]);
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 z-[100] pointer-events-none flex items-center justify-center"
+      style={{
+        x: springX,
+        y: springY,
+        translateX: "-50%",
+        translateY: "-50%",
+      }}
+      animate={{
+        scale: visible ? 1 : 0,
+        opacity: visible ? 1 : 0,
+      }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      data-testid="cursor-view"
+      ref={(el) => {
+        if (el) {
+          (el as any).__setVisible = setVisible;
+        }
+      }}
+    >
+      <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center backdrop-blur-sm">
+        <span className="text-[#0A0A0A] text-xs font-medium tracking-[0.15em] uppercase">
+          View
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
 function ProjectsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const [, navigate] = useLocation();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
+
+  const handleNavigate = (slug: string) => {
+    navigate(`/projects/${slug}`);
+  };
+
+  const handleMouseEnter = () => {
+    const cursorEl = document.querySelector("[data-testid='cursor-view']");
+    if (cursorEl && (cursorEl as any).__setVisible) {
+      (cursorEl as any).__setVisible(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const cursorEl = document.querySelector("[data-testid='cursor-view']");
+    if (cursorEl && (cursorEl as any).__setVisible) {
+      (cursorEl as any).__setVisible(false);
+    }
+  };
 
   return (
     <section
@@ -325,7 +352,12 @@ function ProjectsSection() {
       style={{ height: `${(projects.length + 1) * 100}vh` }}
       data-testid="section-projects"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div
+        ref={stickyRef}
+        className="sticky top-0 h-screen w-full overflow-hidden"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {projects.map((project, i) => (
           <ProjectSlide
             key={project.slug}
@@ -333,6 +365,7 @@ function ProjectsSection() {
             index={i}
             total={projects.length}
             containerProgress={scrollYProgress}
+            onNavigate={handleNavigate}
           />
         ))}
       </div>
@@ -498,6 +531,7 @@ export default function Home() {
 
   return (
     <div className="bg-[#0A0A0A] min-h-screen">
+      <ViewCursor />
       <Navbar />
       <HeroSection />
       <LogoMarquee />
