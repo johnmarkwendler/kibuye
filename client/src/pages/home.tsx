@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useSmoothScroll, useLenisScrollTo } from "@/components/smooth-scroll";
 
 const projects = [
   {
@@ -90,17 +91,13 @@ function LiveClock() {
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const scrollTo = useLenisScrollTo();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
-
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <nav
@@ -113,7 +110,7 @@ function Navbar() {
     >
       <div className="flex items-center justify-between px-6 md:px-10 py-5">
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => scrollTo("body")}
           className="font-heading text-white text-sm tracking-[0.2em] uppercase"
           data-testid="link-home"
         >
@@ -121,21 +118,21 @@ function Navbar() {
         </button>
         <div className="flex items-center gap-8 md:gap-12">
           <button
-            onClick={() => scrollTo("projects")}
+            onClick={() => scrollTo("#projects")}
             className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
             data-testid="link-projects"
           >
             Projects
           </button>
           <button
-            onClick={() => scrollTo("about")}
+            onClick={() => scrollTo("#about")}
             className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
             data-testid="link-about"
           >
             About
           </button>
           <button
-            onClick={() => scrollTo("contact")}
+            onClick={() => scrollTo("#contact")}
             className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
             data-testid="link-contact"
           >
@@ -492,6 +489,8 @@ function Footer() {
 }
 
 export default function Home() {
+  useSmoothScroll();
+
   useEffect(() => {
     document.documentElement.classList.add("dark");
     document.body.style.backgroundColor = "#0A0A0A";
