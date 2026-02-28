@@ -1,0 +1,495 @@
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+
+const projects = [
+  {
+    title: "Of Earth",
+    year: "2022",
+    category: "Commercial",
+    image: "/images/project-of-earth.png",
+    slug: "of-earth",
+  },
+  {
+    title: "After the Quiet",
+    year: "2023",
+    category: "Short Film",
+    image: "/images/project-after-quiet.png",
+    slug: "after-the-quiet",
+  },
+  {
+    title: "Echoes of Us",
+    year: "2023",
+    category: "Wedding Film",
+    image: "/images/project-echoes-of-us.png",
+    slug: "echoes-of-us",
+  },
+  {
+    title: "Still Breathing",
+    year: "2025",
+    category: "Brand Film",
+    image: "/images/project-still-breathing.png",
+    slug: "still-breathing",
+  },
+  {
+    title: "Scent & Silence",
+    year: "2022",
+    category: "Commercial",
+    image: "/images/project-scent-silence.png",
+    slug: "scent-silence",
+  },
+  {
+    title: "The Light Between",
+    year: "2025",
+    category: "Short Film",
+    image: "/images/project-light-between.png",
+    slug: "the-light-between",
+  },
+];
+
+const services = [
+  "Brand Films",
+  "Commercials & Ad Spots",
+  "Event Cinematography",
+  "Editorial & Fashion Films",
+  "Wedding Films",
+  "Product Films",
+  "Music Videos",
+  "Documentary Shorts",
+  "Social Media Visuals",
+  "Creative Direction",
+];
+
+const clientLogos = [
+  "VOGUE",
+  "NIKE",
+  "APPLE",
+  "SONY",
+  "CHANEL",
+  "DIOR",
+  "GUCCI",
+];
+
+function LiveClock() {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatted = time.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+    timeZone: "America/Los_Angeles",
+  });
+
+  return <span data-testid="text-live-clock">{formatted}</span>;
+}
+
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <nav
+      data-testid="nav-main"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[#0A0A0A]/90 backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="flex items-center justify-between px-6 md:px-10 py-5">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="font-heading text-white text-sm tracking-[0.2em] uppercase"
+          data-testid="link-home"
+        >
+          AMBER
+        </button>
+        <div className="flex items-center gap-8 md:gap-12">
+          <button
+            onClick={() => scrollTo("projects")}
+            className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
+            data-testid="link-projects"
+          >
+            Projects
+          </button>
+          <button
+            onClick={() => scrollTo("about")}
+            className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
+            data-testid="link-about"
+          >
+            About
+          </button>
+          <button
+            onClick={() => scrollTo("contact")}
+            className="text-white/70 text-xs tracking-[0.15em] uppercase transition-colors duration-300 hover:text-white"
+            data-testid="link-contact"
+          >
+            Let's Talk
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function HeroSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  return (
+    <section
+      ref={ref}
+      className="relative h-screen w-full overflow-hidden"
+      data-testid="section-hero"
+    >
+      <motion.div className="absolute inset-0" style={{ y }}>
+        <img
+          src="/images/hero.png"
+          alt="Amber Studio Hero"
+          className="w-full h-full object-cover scale-110"
+        />
+        <div className="absolute inset-0 bg-[#3a6a8a]/30 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/40 via-transparent to-[#0A0A0A]/60" />
+      </motion.div>
+
+      <motion.div
+        className="relative z-10 flex flex-col items-center justify-center h-full"
+        style={{ opacity }}
+      >
+        <h1
+          className="font-heading text-white text-[12vw] md:text-[10vw] lg:text-[9vw] leading-[0.9] tracking-[-0.02em] uppercase text-center"
+          data-testid="text-hero-title"
+        >
+          AMBER STUDIO
+        </h1>
+      </motion.div>
+
+      <div className="absolute bottom-0 left-0 right-0 z-10 px-6 md:px-10 pb-6">
+        <div className="flex items-end justify-between gap-4 text-white/60 text-xs tracking-[0.1em] uppercase">
+          <span data-testid="text-tagline">Creative Production Studio</span>
+          <span data-testid="text-location" className="hidden md:block">
+            Los Angeles, California
+          </span>
+          <span className="hidden md:block">
+            <LiveClock />
+          </span>
+          <span data-testid="text-copyright">&copy; Amber 2025</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DividerLine() {
+  return (
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+  );
+}
+
+function LogoMarquee() {
+  return (
+    <section className="bg-[#0A0A0A] py-10 overflow-hidden" data-testid="section-clients">
+      <DividerLine />
+      <div className="py-10 relative">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map(
+            (logo, i) => (
+              <span
+                key={i}
+                className="mx-10 md:mx-16 text-white/20 font-heading text-lg md:text-xl tracking-[0.3em] uppercase inline-block"
+                data-testid={`text-client-logo-${i}`}
+              >
+                {logo}
+              </span>
+            )
+          )}
+        </div>
+      </div>
+      <DividerLine />
+    </section>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  return (
+    <motion.div
+      ref={ref}
+      className="group relative overflow-hidden cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      data-testid={`card-project-${project.slug}`}
+    >
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <motion.img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover"
+          animate={{ scale: isHovered ? 1.05 : 1 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        />
+        <div className="absolute inset-0 bg-[#0A0A0A]/40 group-hover:bg-[#0A0A0A]/20 transition-all duration-500" />
+
+        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h3
+                className="font-heading text-white text-2xl md:text-3xl lg:text-4xl uppercase tracking-[-0.01em] leading-tight"
+                data-testid={`text-project-title-${project.slug}`}
+              >
+                {project.title}
+              </h3>
+              <div className="flex items-center gap-3 mt-2">
+                <span className="text-white/50 text-xs tracking-[0.1em] uppercase">
+                  {project.year}
+                </span>
+                <span className="w-1 h-1 rounded-full bg-white/30" />
+                <span className="text-white/50 text-xs tracking-[0.1em] uppercase">
+                  {project.category}
+                </span>
+              </div>
+            </div>
+            <motion.div
+              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center flex-shrink-0"
+              animate={{
+                scale: isHovered ? 1 : 0.8,
+                opacity: isHovered ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                className="text-white"
+              >
+                <path
+                  d="M1 13L13 1M13 1H5M13 1V9"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function ProjectsSection() {
+  return (
+    <section
+      id="projects"
+      className="bg-[#0A0A0A] py-16 md:py-24 px-4 md:px-6"
+      data-testid="section-projects"
+    >
+      <div className="max-w-[1600px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  return (
+    <section
+      id="about"
+      className="bg-[#0A0A0A] py-20 md:py-32 px-6 md:px-10"
+      data-testid="section-about"
+    >
+      <div className="max-w-[1400px] mx-auto">
+        <DividerLine />
+        <div className="py-16 md:py-24">
+          <motion.h2
+            className="font-heading text-white text-3xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.15] tracking-[-0.01em] max-w-[1100px]"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            data-testid="text-about-description"
+          >
+            We're a videography studio driven by a love for cinematic
+            storytelling and intentional filmmaking. From brand films and
+            commercials to weddings and editorial pieces, we bring a crafted,
+            artful approach to every frame.
+          </motion.h2>
+        </div>
+        <DividerLine />
+      </div>
+    </section>
+  );
+}
+
+function ServicesSection() {
+  return (
+    <section
+      className="bg-[#0A0A0A] py-16 md:py-24 px-6 md:px-10"
+      data-testid="section-services"
+    >
+      <div className="max-w-[1400px] mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <h3
+            className="text-white/40 text-xs tracking-[0.2em] uppercase mb-12"
+            data-testid="text-services-label"
+          >
+            Services
+          </h3>
+        </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4">
+          {services.map((service, i) => (
+            <motion.div
+              key={service}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: i * 0.05,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
+              <span
+                className="text-white/70 text-sm md:text-base tracking-wide block py-3 border-b border-white/5 hover:text-white hover:border-white/20 transition-all duration-300 cursor-default"
+                data-testid={`text-service-${i}`}
+              >
+                {service}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContactSection() {
+  return (
+    <section
+      id="contact"
+      className="bg-[#0A0A0A] py-24 md:py-40 px-6 md:px-10"
+      data-testid="section-contact"
+    >
+      <div className="max-w-[1400px] mx-auto text-center">
+        <DividerLine />
+        <div className="py-20 md:py-32">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <p
+              className="text-white/40 text-xs tracking-[0.2em] uppercase mb-8"
+              data-testid="text-contact-label"
+            >
+              Get in touch
+            </p>
+            <h2
+              className="font-heading text-white text-4xl md:text-6xl lg:text-8xl uppercase tracking-[-0.02em]"
+              data-testid="text-contact-heading"
+            >
+              Let's Talk
+            </h2>
+            <p
+              className="text-white/50 text-sm md:text-base mt-6 max-w-md mx-auto leading-relaxed"
+              data-testid="text-contact-description"
+            >
+              Have a project in mind? We'd love to hear about it. Reach out and
+              let's create something beautiful together.
+            </p>
+            <motion.a
+              href="mailto:hello@amberstudio.com"
+              className="inline-block mt-10 px-8 py-4 border border-white/20 text-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-white hover:text-[#0A0A0A] transition-all duration-500"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              data-testid="link-email"
+            >
+              hello@amberstudio.com
+            </motion.a>
+          </motion.div>
+        </div>
+        <DividerLine />
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer
+      className="bg-[#0A0A0A] py-8 px-6 md:px-10"
+      data-testid="footer"
+    >
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
+        <span>Amber Studio</span>
+        <span>Los Angeles, California</span>
+        <span>&copy; 2025 All Rights Reserved</span>
+      </div>
+    </footer>
+  );
+}
+
+export default function Home() {
+  useEffect(() => {
+    document.documentElement.classList.add("dark");
+    document.body.style.backgroundColor = "#0A0A0A";
+  }, []);
+
+  return (
+    <div className="bg-[#0A0A0A] min-h-screen">
+      <Navbar />
+      <HeroSection />
+      <LogoMarquee />
+      <ProjectsSection />
+      <AboutSection />
+      <ServicesSection />
+      <ContactSection />
+      <Footer />
+    </div>
+  );
+}
