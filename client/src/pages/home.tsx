@@ -18,13 +18,14 @@ const services = [
 ];
 
 const clientLogos = [
-  "VOGUE",
-  "NIKE",
-  "APPLE",
-  "SONY",
-  "CHANEL",
-  "DIOR",
-  "GUCCI",
+  "SAN DIEGO",
+  "CHICAGO",
+  "BRUSSELS",
+  "BUJUMBURA",
+  "DAR ES SALAAM",
+  "KILIMANJARO",
+  "DOHA",
+  "DALLAS",
 ];
 
 function LiveClock() {
