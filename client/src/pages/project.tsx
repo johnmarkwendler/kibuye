@@ -94,11 +94,25 @@ export default function ProjectPage() {
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
+          {project.video ? (
+            <video
+              src={project.video}
+              poster={project.image}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={`${project.title} project video`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          )}
           <div className="absolute inset-0 bg-[#0A0A0A]/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/30" />
         </motion.div>

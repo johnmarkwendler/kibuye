@@ -3,6 +3,7 @@ export interface Project {
   year: string;
   category: string;
   image: string;
+  video?: string;
   slug: string;
   client: string;
   overview: string;

@@ -23,10 +23,10 @@ Preferred communication style: Simple, everyday language.
 
 ### Key Frontend Features
 
-- **Hero Section**: Full-screen background image with parallax scroll, "AMBER STUDIO" heading, live LA clock, bottom info bar
+- **Hero Section**: Full-screen background video with parallax scroll, "AMBER STUDIO" heading, live LA clock, bottom info bar. Uses poster image as fallback.
 - **Logo Marquee**: Infinite horizontal scroll of client brand names with CSS animation
-- **Full-Screen Stacking Projects**: 6 projects displayed as full-viewport slides using a sticky container with clip-path reveal animation. Each project scrolls in from the bottom covering the previous one. Uses a tall container (`(projects + 1) * 100vh`) with a sticky `h-screen` viewport inside. Custom "VIEW" cursor follows mouse on project slides; clicking navigates to project detail page.
-- **Project Detail Pages**: `/projects/:slug` — full-screen hero image, project metadata (title, category, client, year), overview/description, credits grid, and "More Projects" section linking to other projects.
+- **Full-Screen Stacking Projects**: 6 projects displayed as full-viewport slides using a sticky container with clip-path reveal animation. Each project scrolls in from the bottom covering the previous one. Uses a tall container (`(projects + 1) * 100vh`) with a sticky `h-screen` viewport inside. Custom "VIEW" cursor follows mouse on project slides; clicking navigates to project detail page. Supports optional `video` field per project — renders `<video>` with image poster fallback when set, otherwise static `<img>`.
+- **Project Detail Pages**: `/projects/:slug` — full-screen hero (video or image), project metadata (title, category, client, year), overview/description, credits grid, and "More Projects" section linking to other projects.
 - **About Section**: Large Antonio-font statement text with scroll-triggered fade-in
 - **Services Section**: Grid of 10 services with staggered reveal animations
 - **Contact Section**: "Let's Talk" CTA with email link
@@ -35,7 +35,9 @@ Preferred communication style: Simple, everyday language.
 ### Project Images
 
 Generated AI images stored in `client/public/images/`:
-- `hero.png` — Hero section background
+- `hero.png` — Hero section background (legacy)
+- `hero-video.mp4` — Hero section background video
+- `hero-poster.png` — Hero video poster/fallback image
 - `project-of-earth.png`, `project-after-quiet.png`, `project-echoes-of-us.png`, `project-still-breathing.png`, `project-scent-silence.png`, `project-light-between.png` — Project backgrounds
 
 ### Backend Architecture

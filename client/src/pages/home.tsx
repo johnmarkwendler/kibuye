@@ -117,9 +117,15 @@ function HeroSection() {
       data-testid="section-hero"
     >
       <motion.div className="absolute inset-0" style={{ y }}>
-        <img
-          src="/images/hero.png"
-          alt="Amber Studio Hero"
+        <video
+          src="/images/hero-video.mp4"
+          poster="/images/hero-poster.png"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="Amber Studio hero background video"
           className="w-full h-full object-cover scale-110"
         />
         <div className="absolute inset-0 bg-[#3a6a8a]/30 mix-blend-multiply" />
@@ -236,12 +242,27 @@ function ProjectSlide({
       data-testid={`card-project-${project.slug}`}
     >
       <div className="absolute inset-0 overflow-hidden">
-        <motion.img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover"
-          style={{ scale: imgScale }}
-        />
+        {project.video ? (
+          <motion.video
+            src={project.video}
+            poster={project.image}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label={`${project.title} project video`}
+            className="w-full h-full object-cover"
+            style={{ scale: imgScale }}
+          />
+        ) : (
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+            style={{ scale: imgScale }}
+          />
+        )}
         <div className="absolute inset-0 bg-[#0A0A0A]/45" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/70 via-transparent to-[#0A0A0A]/20" />
       </div>
