@@ -153,7 +153,7 @@ function HeroSection() {
           <span className="hidden md:block">
             <LiveClock />
           </span>
-          <span data-testid="text-copyright">&copy; Amber 2025</span>
+          <span data-testid="text-copyright">AME Fund</span>
         </div>
       </div>
     </section>
@@ -536,7 +536,7 @@ function Footer() {
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
         <span>Field journal from Burundi</span>
         <span>Los Angeles, California</span>
-        <span>&copy; 2025 AME Fund</span>
+        <span>AME Fund</span>
       </div>
     </footer>
   );
