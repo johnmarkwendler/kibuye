@@ -38,7 +38,6 @@ function LiveClock() {
     minute: "2-digit",
     second: "2-digit",
     hour12: true,
-    timeZone: "America/Los_Angeles",
   });
 
   return <span data-testid="text-live-clock">{formatted}</span>;
@@ -146,7 +145,7 @@ function HeroSection() {
         <div className="flex items-end justify-between gap-4 text-white/60 text-xs tracking-[0.1em] uppercase">
           <span data-testid="text-tagline">Field journal from Burundi</span>
           <span data-testid="text-location" className="hidden md:block">
-            Los Angeles, California
+            San Diego, California
           </span>
           <span className="hidden md:block">
             <LiveClock />
@@ -485,7 +484,7 @@ function ContactSection() {
               className="text-white/50 text-sm md:text-base mt-6 max-w-md mx-auto leading-relaxed"
               data-testid="text-contact-description"
             >
-              If you'd like to support this work or follow along, feel free to reach out.
+              If you'd like to support this work or follow along, feel free to reach out. I'm currently based in San Diego, CA.
             </p>
             <motion.a
               href="mailto:johnmarkwendler@gmail.com"
@@ -515,7 +514,7 @@ function Footer() {
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
         <span>Field journal from Burundi</span>
-        <span>Los Angeles, California</span>
+        <span>San Diego, California</span>
         <span>AME Fund</span>
       </div>
     </footer>

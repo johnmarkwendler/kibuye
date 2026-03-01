@@ -276,7 +276,7 @@ export default function ProjectPage() {
       >
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
           <span>Field journal from Burundi</span>
-          <span>Los Angeles, California</span>
+          <span>San Diego, California</span>
           <span>AME Fund</span>
         </div>
       </footer>
