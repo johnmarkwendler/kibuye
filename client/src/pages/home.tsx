@@ -484,16 +484,16 @@ function ContactSection() {
               className="text-white/50 text-sm md:text-base mt-6 max-w-md mx-auto leading-relaxed"
               data-testid="text-contact-description"
             >
-              If you'd like to support this work or follow along, feel free to reach out. I'm currently based in San Diego, CA.
+              If you'd like to support this work or follow along, feel free to reach out.
             </p>
             <motion.a
-              href="mailto:johnmarkwendler@gmail.com"
+              href="mailto:theamefund@gmail.com"
               className="inline-block mt-10 px-8 py-4 border border-white/20 text-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-white hover:text-[#0A0A0A] transition-all duration-500"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               data-testid="link-email"
             >
-              johnmarkwendler@gmail.com
+              theamefund@gmail.com
             </motion.a>
 
             <DonorboxWidget />
