@@ -13,39 +13,36 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Of Earth",
-    year: "2022",
-    category: "Commercial",
+    title: "STANLEYVILLE",
+    year: "1964 · Congo Crisis",
+    category: "RESCUE",
     image: "/images/project-of-earth.png",
-    slug: "of-earth",
-    client: "Terra Botanics",
-    overview: "A grounding visual exploration of sustainable agriculture and its connection to the land.",
-    description: "Of Earth is a cinematic commercial that traces the journey from soil to table. Filmed across organic farms in Northern California, the piece celebrates the hands that tend the earth and the beauty found in patience. Rich earth tones, golden-hour lighting, and slow-motion harvests create a meditative rhythm that mirrors the natural cycles of growth. The film invites viewers to reconnect with the origin of what nourishes us.",
+    slug: "stanleyville",
+    client: "Delbert Carper",
+    overview:
+      "A family origin story: rescue and survival in Stanleyville during the Congo Crisis.",
+    description:
+      "Delbert Carper, his wife, and their young daughter were rescued from Stanleyville (present-day Democratic Republic of Congo) during the 1964 crisis—an experience later told in Out of the Jaws of the Lion.",
     credits: [
-      { role: "Director", name: "Maren Cole" },
-      { role: "Cinematographer", name: "Jude Alvarado" },
-      { role: "Editor", name: "Suki Ren" },
-      { role: "Producer", name: "Olive Marks" },
-      { role: "Colorist", name: "Noa Vance" },
-      { role: "Sound Design", name: "Leo Thorne" },
+      { role: "Subject", name: "Delbert Carper" },
+      { role: "Book", name: "Out of the Jaws of the Lion" },
+      { role: "Place", name: "Stanleyville (DRC)" },
     ],
   },
   {
-    title: "After the Quiet",
-    year: "2023",
-    category: "Short Film",
+    title: "BRUSSELS",
+    year: "1953 & 2026 · Belgium",
+    category: "BEGINNING",
     image: "/images/project-after-quiet.png",
-    slug: "after-the-quiet",
-    client: "Independent",
-    overview: "A short film exploring solitude, memory, and the spaces we inhabit after loss.",
-    description: "After the Quiet follows a woman as she returns to her childhood home after years away. The film unfolds in near-silence, relying on ambient sound and carefully composed frames to convey the weight of absence. Every room holds a memory; every shadow tells a story. Shot on 35mm-inspired digital with a muted palette, the piece is an intimate meditation on grief, healing, and the courage it takes to sit with stillness.",
+    slug: "brussels",
+    client: "Family History",
+    overview:
+      "A birthplace and a return: Brussels as the start of our family’s next chapter.",
+    description:
+      "Brussels is where my mom was born in 1953—and in 2026 it becomes a waypoint again, connecting a rescue story to a new journey of service.",
     credits: [
-      { role: "Director", name: "Lior Bennett" },
-      { role: "Cinematographer", name: "Theo Marren" },
-      { role: "Editor", name: "Finn Drew" },
-      { role: "Producer", name: "Clara Osei" },
-      { role: "Score", name: "Ines Moreau" },
-      { role: "Sound Design", name: "Remi Korr" },
+      { role: "Place", name: "Brussels, Belgium" },
+      { role: "Theme", name: "Beginning" },
     ],
   },
   {

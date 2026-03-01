@@ -1,0 +1,55 @@
+I can’t directly edit/push to your GitHub repo from this chat — the GitHub connector I have here is read-only (fetch/search). So I can’t “do it” in the sense of committing the change for you.
+
+But I can do the next best thing: give you the exact, copy/paste-ready edit to apply in the one file that controls that metadata.
+
+File to edit
+
+client/src/lib/projects.ts  (I fetched it at: https://github.com/johnmarkwendler/kibuye/blob/main/client/src/lib/projects.ts)
+
+What to change
+
+In export const projects: Project[] = [ the first two objects currently start as “Of Earth …” and “After the Quiet …” . Replace those two objects with these two objects (exactly as you specified for the metadata):
+
+  {
+    title: "STANLEYVILLE",
+    year: "1964 · Congo Crisis",
+    category: "RESCUE",
+    image: "/images/project-of-earth.png",
+    slug: "stanleyville",
+    client: "Delbert Carper",
+    overview:
+      "A family origin story: rescue and survival in Stanleyville during the Congo Crisis.",
+    description:
+      "Delbert Carper, his wife, and their young daughter were rescued from Stanleyville (present-day Democratic Republic of Congo) during the 1964 crisis—an experience later told in Out of the Jaws of the Lion.",
+    credits: [
+      { role: "Subject", name: "Delbert Carper" },
+      { role: "Book", name: "Out of the Jaws of the Lion" },
+      { role: "Place", name: "Stanleyville (DRC)" },
+    ],
+  },
+  {
+    title: "BRUSSELS",
+    year: "1953 & 2026 · Belgium",
+    category: "BEGINNING",
+    image: "/images/project-after-quiet.png",
+    slug: "brussels",
+    client: "Family History",
+    overview:
+      "A birthplace and a return: Brussels as the start of our family’s next chapter.",
+    description:
+      "Brussels is where my mom was born in 1953—and in 2026 it becomes a waypoint again, connecting a rescue story to a new journey of service.",
+    credits: [
+      { role: "Place", name: "Brussels, Belgium" },
+      { role: "Theme", name: "Beginning" },
+    ],
+  },
+
+That will render exactly:
+	•	STANLEYVILLE / 1964 · Congo Crisis • RESCUE
+	•	BRUSSELS / 1953 & 2026 · Belgium • BEGINNING
+
+Quick notes so nothing breaks
+	•	The slug values must be unique (stanleyville, brussels) so your /projects/:slug pages work.
+	•	Images can stay as-is for now; you can swap later.
+
+If you want, paste the top ~120 lines of your updated projects.ts after you edit it, and I’ll sanity-check it for typos and routing issues.
