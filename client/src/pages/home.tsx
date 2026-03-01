@@ -411,10 +411,8 @@ function AboutSection() {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             data-testid="text-about-description"
           >
-            We're a videography studio driven by a love for cinematic
-            storytelling and intentional filmmaking. From brand films and
-            commercials to weddings and editorial pieces, we bring a crafted,
-            artful approach to every frame.
+            Thanks for checking out the trip, and a piece of my family history.
+            If you’d like to support the work, keep scrolling.
           </motion.h2>
         </div>
         <DividerLine />
@@ -424,51 +422,7 @@ function AboutSection() {
 }
 
 function ServicesSection() {
-  return (
-    <section
-      className="relative bg-[#0A0A0A] py-16 md:py-24 px-6 md:px-10"
-      style={{ zIndex: projects.length + 10 }}
-      data-testid="section-services"
-    >
-      <div className="max-w-[1400px] mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3
-            className="text-white/40 text-xs tracking-[0.2em] uppercase mb-12"
-            data-testid="text-services-label"
-          >
-            Services
-          </h3>
-        </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4">
-          {services.map((service, i) => (
-            <motion.div
-              key={service}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.05,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-            >
-              <span
-                className="text-white/70 text-sm md:text-base tracking-wide block py-3 border-b border-white/5 hover:text-white hover:border-white/20 transition-all duration-300 cursor-default"
-                data-testid={`text-service-${i}`}
-              >
-                {service}
-              </span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return null;
 }
 
 function ContactSection() {
@@ -504,17 +458,16 @@ function ContactSection() {
               className="text-white/50 text-sm md:text-base mt-6 max-w-md mx-auto leading-relaxed"
               data-testid="text-contact-description"
             >
-              Have a project in mind? We'd love to hear about it. Reach out and
-              let's create something beautiful together.
+              If you’d like to support this work or follow along, feel free to reach out.
             </p>
             <motion.a
-              href="mailto:hello@amberstudio.com"
+              href="mailto:johnmarkwendler@gmail.com"
               className="inline-block mt-10 px-8 py-4 border border-white/20 text-white text-xs tracking-[0.2em] uppercase rounded-full hover:bg-white hover:text-[#0A0A0A] transition-all duration-500"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               data-testid="link-email"
             >
-              hello@amberstudio.com
+              johnmarkwendler@gmail.com
             </motion.a>
           </motion.div>
         </div>
