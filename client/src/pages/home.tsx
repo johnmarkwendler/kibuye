@@ -115,17 +115,17 @@ function HeroSection() {
       data-testid="section-hero"
     >
       <motion.div className="absolute inset-0" style={{ y }}>
-        <video
-          src="/images/hero-video.mp4"
-          poster="/images/hero-poster.png"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="Amber Studio hero background video"
-          className="w-full h-full object-cover scale-110"
-        />
+          <video
+            src="/images/hero-video.mp4"
+            poster="/images/hero-poster.png"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Village scene in Burundi"
+            className="w-full h-full object-cover scale-110"
+          />
         <div className="absolute inset-0 bg-[#3a6a8a]/30 mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A]/40 via-transparent to-[#0A0A0A]/60" />
       </motion.div>
@@ -469,6 +469,11 @@ function ContactSection() {
             >
               johnmarkwendler@gmail.com
             </motion.a>
+
+            <div className="mt-16 max-w-[400px] mx-auto overflow-hidden rounded-xl bg-white/5 p-4 border border-white/10">
+              <script type="module" src="https://donorbox.org/widgets.js" async></script>
+              <dbox-widget campaign="general-donation-17" type="donation_form" interval="1 T" enable-auto-scroll="true"></dbox-widget>
+            </div>
           </motion.div>
         </div>
         <DividerLine />
