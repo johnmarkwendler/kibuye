@@ -16,7 +16,8 @@ export const projects: Project[] = [
     title: "STANLEYVILLE",
     year: "1964 · Congo Crisis",
     category: "RESCUE",
-    image: "/images/project-of-earth.png",
+    image: "/images/stanleyville-poster.png",
+    video: "/images/stanleyville-video.mp4",
     slug: "stanleyville",
     client: "Delbert Carper",
     overview:
