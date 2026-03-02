@@ -143,9 +143,9 @@ function HeroSection() {
 
       <div className="absolute bottom-0 left-0 right-0 z-10 px-6 md:px-10 pb-6">
         <div className="flex items-end justify-between gap-4 text-white/60 text-xs tracking-[0.1em] uppercase">
-          <span data-testid="text-tagline">Field journal from Burundi</span>
+          <span data-testid="text-tagline">Field journal from Africa</span>
           <span data-testid="text-location" className="hidden md:block">
-            San Diego, California
+            Burundi
           </span>
           <span className="hidden md:block">
             <LiveClock />
@@ -513,8 +513,8 @@ function Footer() {
       data-testid="footer"
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs tracking-[0.1em] uppercase">
-        <span>Field journal from Burundi</span>
-        <span>San Diego, California</span>
+        <span>Field journal from Africa</span>
+        <span>Burundi</span>
         <span>AME Fund</span>
       </div>
     </footer>
