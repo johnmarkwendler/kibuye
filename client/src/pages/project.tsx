@@ -183,6 +183,26 @@ export default function ProjectPage() {
           </div>
 
           <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mt-16 md:mt-24" />
+
+          {project.postImages?.length ? (
+            <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+              {project.postImages.map((image) => (
+                <figure key={image.src} className="space-y-3" data-testid={`image-post-${image.src.split('/').pop()}`}>
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-auto object-cover border border-white/10"
+                    loading="lazy"
+                  />
+                  {image.caption ? (
+                    <figcaption className="text-white/50 text-xs tracking-[0.08em] uppercase">
+                      {image.caption}
+                    </figcaption>
+                  ) : null}
+                </figure>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 
