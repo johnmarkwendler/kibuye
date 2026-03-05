@@ -41,8 +41,7 @@ export const projects: Project[] = [
     title: "BRUSSELS",
     year: "1953 & 2026 · Belgium",
     category: "BEGINNING",
-    image: "/images/brussels-poster.jpg",
-    video: "/videos/brussels.mp4",
+    image: "/images/project-after-quiet.png",
     slug: "brussels",
     client: "Family History",
     overview:
