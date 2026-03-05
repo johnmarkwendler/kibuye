@@ -1,3 +1,5 @@
+import brusselsImg from "@assets/IMG_0114_1772683224644.jpeg";
+
 export interface Project {
   title: string;
   year: string;
@@ -41,7 +43,7 @@ export const projects: Project[] = [
     title: "BRUSSELS",
     year: "1953 & 2026 · Belgium",
     category: "BEGINNING",
-    image: "/images/project-after-quiet.png",
+    image: brusselsImg,
     slug: "brussels",
     client: "Family History",
     overview:
