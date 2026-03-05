@@ -247,9 +247,9 @@ function ProjectSlide({
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             aria-label={`${project.title} project video`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover scale-110"
             style={{ scale: imgScale }}
           />
         ) : (
