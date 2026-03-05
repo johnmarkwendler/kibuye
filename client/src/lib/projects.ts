@@ -1,4 +1,5 @@
 import brusselsImg from "@assets/IMG_0114_1772683224644.jpeg";
+import brusselsVideo from "@assets/gemini_generated_video_95C77870_1772683542418.mp4";
 
 export interface Project {
   title: string;
@@ -44,6 +45,7 @@ export const projects: Project[] = [
     year: "1953 & 2026 · Belgium",
     category: "BEGINNING",
     image: brusselsImg,
+    video: brusselsVideo,
     slug: "brussels",
     client: "Family History",
     overview:
