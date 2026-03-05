@@ -42,7 +42,7 @@ export const projects: Project[] = [
     year: "1953 & 2026 · Belgium",
     category: "BEGINNING",
     image: "/images/project-after-quiet.png",
-    video: "/assets/gemini_generated_video_95C77870_1772682335537.mp4",
+    video: "/videos/brussels.mp4",
     slug: "brussels",
     client: "Family History",
     overview:
