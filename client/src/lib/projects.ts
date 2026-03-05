@@ -17,27 +17,27 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "STANLEYVILLE",
+    title: "KISANGANI",
     year: "1964 · Congo Crisis",
     category: "RESCUE",
     image: "/images/stanleyville-poster.png",
-    slug: "stanleyville",
+    slug: "kisangani",
     client: "Delbert Carper",
     overview:
-      "A family origin story: rescue and survival in Stanleyville during the Congo Crisis.",
+      "A family origin story: rescue and survival in Kisangani during the Congo Crisis.",
     description:
-      "Delbert Carper, his wife, and their young daughter were rescued from Stanleyville (present-day Democratic Republic of Congo) during the 1964 crisis—an experience later told in Out of the Jaws of the Lion. In the inside-cover rescue-plane photo from Homer Dowdy’s book, Delbert Carper is depicted at far right.",
+      "Delbert Carper, his wife, and their young daughter were rescued from Kisangani (present-day Democratic Republic of Congo) during the 1964 crisis—an experience later told in Out of the Jaws of the Lion. In the inside-cover rescue-plane photo from Homer Dowdy’s book, Delbert Carper is depicted at far right.",
     postImages: [
       {
         src: "/images/project-of-earth.png",
-        alt: "Tree-lined street in Stanleyville",
-        caption: "Tree-lined street scene from Stanleyville.",
+        alt: "Tree-lined street in Kisangani",
+        caption: "Tree-lined street scene from Kisangani.",
       },
     ],
     credits: [
       { role: "Subject", name: "Delbert Carper" },
       { role: "Book", name: "Out of the Jaws of the Lion" },
-      { role: "Place", name: "Stanleyville (DRC)" },
+      { role: "Place", name: "Kisangani (DRC)" },
     ],
   },
   {
