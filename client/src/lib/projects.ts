@@ -1,5 +1,5 @@
 import brusselsImg from "@assets/IMG_0114_1772683224644.jpeg";
-import brusselsVideo from "@assets/gemini_generated_video_95C77870_1772683542418.mp4";
+import brusselsVideo from "@assets/IMG_0144_1773695294114.mov";
 
 export interface Project {
   title: string;
