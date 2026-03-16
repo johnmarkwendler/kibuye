@@ -265,7 +265,7 @@ function ProjectSlide({
       </div>
 
       <motion.div
-        className="absolute inset-0 flex flex-col items-center justify-end pb-20 md:pb-24 pointer-events-none"
+        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
         style={{ opacity: textOpacity, y: textY, zIndex: 10 }}
       >
         <h2
