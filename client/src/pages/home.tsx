@@ -251,7 +251,7 @@ function ProjectSlide({
           <motion.img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover ${project.slug === 'kisangani' ? 'object-right' : ''}`}
             style={{ scale: imgScale }}
           />
         )}
