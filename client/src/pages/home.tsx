@@ -212,11 +212,6 @@ function ProjectSlide({
   );
   const clipPath = useTransform(clipPercent, (v: number) => `inset(${v}% 0 0 0)`);
 
-  const textOpacity = useTransform(
-    containerProgress,
-    [start + segmentSize * 0.2, start + segmentSize * 0.4, mid + segmentSize * 0.15, end - segmentSize * 0.05],
-    [0, 1, 1, index === total - 1 ? 1 : 0]
-  );
   const textY = useTransform(
     containerProgress,
     [start + segmentSize * 0.2, start + segmentSize * 0.4],
@@ -266,7 +261,7 @@ function ProjectSlide({
 
       <motion.div
         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
-        style={{ opacity: textOpacity, y: textY, zIndex: 10 }}
+        style={{ y: textY, zIndex: 10 }}
       >
         <h2
           className="font-heading text-white text-4xl md:text-6xl lg:text-7xl uppercase tracking-[-0.01em] text-center leading-[0.95]"
