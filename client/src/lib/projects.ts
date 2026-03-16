@@ -20,13 +20,13 @@ export const projects: Project[] = [
     title: "KISANGANI",
     year: "1964 · Congo Crisis",
     category: "RESCUE",
-    image: "/images/stanleyville-poster.png",
+    image: "/images/delbert-carper-rescue-plane.jpeg",
     slug: "kisangani",
     client: "Delbert Carper",
     overview:
-      "A family origin story: rescue and survival in Kisangani during the Congo Crisis.",
+      "A family origin story: my grandfather's rescue and survival in Kisangani during the Congo Crisis.",
     description:
-      "Delbert Carper, his wife, and their young daughter were rescued from Kisangani (present-day Democratic Republic of Congo) during the 1964 crisis—an experience later told in Out of the Jaws of the Lion. In the inside-cover rescue-plane photo from Homer Dowdy’s book, Delbert Carper is depicted at far right.",
+      "My grandfather, Delbert Carper, along with his wife and young daughter, were rescued from Kisangani (present-day Democratic Republic of Congo) during the 1964 crisis—an experience later told in Out of the Jaws of the Lion. This is the actual inside-cover rescue-plane photo from Homer Dowdy's book, showing my grandfather at far right, moments after the rescue from Stanleyville.",
     postImages: [
       {
         src: "/images/project-of-earth.png",
@@ -35,7 +35,7 @@ export const projects: Project[] = [
       },
     ],
     credits: [
-      { role: "Subject", name: "Delbert Carper" },
+      { role: "Subject", name: "Delbert Carper (My Grandfather)" },
       { role: "Book", name: "Out of the Jaws of the Lion" },
       { role: "Place", name: "Kisangani (DRC)" },
     ],
