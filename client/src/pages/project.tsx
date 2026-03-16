@@ -110,7 +110,7 @@ export default function ProjectPage() {
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className={`w-full h-full object-cover ${project.slug === 'kisangani' ? 'object-right' : ''}`}
             />
           )}
           <div className="absolute inset-0 bg-[#0A0A0A]/40" />
