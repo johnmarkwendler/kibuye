@@ -74,23 +74,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "THE ROAD",
-    year: "2026 · Burundi",
-    category: "ACCESS",
-    image: "/images/project-scent-silence.png",
-    slug: "the-road",
-    client: "Field Journal",
-    overview:
-      "The road is the constant variable, shaping who can be reached, when, and at what cost.",
-    description:
-      "Travel between sites defines the practical limits of care and connection. Road conditions, weather, and distance turn simple plans into logistical puzzles that must be solved in real time. This chapter follows the movement required to bridge remote places and keep support consistent.",
-    credits: [
-      { role: "Theme", name: "Access" },
-      { role: "Place", name: "Rural corridors, Burundi" },
-      { role: "Focus", name: "Transport and reach" },
-    ],
-  },
-  {
     title: "SHANTY TOWN",
     year: "2026 · Tanzania",
     category: "EXPLORE",
