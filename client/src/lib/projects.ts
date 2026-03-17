@@ -41,7 +41,7 @@ export const projects: Project[] = [
     title: "BUJUMBURA",
     year: "2026 · Burundi",
     category: "ARRIVAL",
-    image: "/images/project-echoes-of-us.png",
+    image: "/images/bujumbura.png",
     video: "/images/bujumbura-video.mov",
     slug: "bujumbura",
     client: "Field Journal",
