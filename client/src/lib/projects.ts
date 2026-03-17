@@ -1,5 +1,3 @@
-import brusselsImg from "@assets/IMG_0114_1772683224644.jpeg";
-import brusselsVideo from "@assets/IMG_0144_1773695294114.mov";
 
 export interface Project {
   title: string;
@@ -38,23 +36,6 @@ export const projects: Project[] = [
       { role: "Subject", name: "Delbert Carper (My Grandfather)" },
       { role: "Book", name: "Out of the Jaws of the Lion" },
       { role: "Place", name: "Kisangani (DRC)" },
-    ],
-  },
-  {
-    title: "BRUSSELS",
-    year: "1953 & 2026 · Belgium",
-    category: "BEGINNING",
-    image: brusselsImg,
-    video: brusselsVideo,
-    slug: "brussels",
-    client: "Family History",
-    overview:
-      "A birthplace and a return: Brussels as the start of our family’s next chapter.",
-    description:
-      "Brussels is where my mom was born in 1953—and in 2026 it becomes a waypoint again, connecting a rescue story to a new journey of service.",
-    credits: [
-      { role: "Place", name: "Brussels, Belgium" },
-      { role: "Theme", name: "Beginning" },
     ],
   },
   {
