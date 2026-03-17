@@ -74,20 +74,20 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "SHANTY TOWN",
+    title: "MOSHI",
     year: "2026 · Tanzania",
     category: "EXPLORE",
     image: "/images/project-light-between.png",
-    slug: "tanzania",
+    slug: "moshi",
     client: "Field Journal",
     overview:
-      "Across the border in Tanzania, exploration widens the frame and tests what can transfer across contexts.",
+      "Moshi stands as a gateway, where regional networks extend the reach of sustained care and learning.",
     description:
-      "This place introduces a different urban edge, where density and scarcity sit side by side. Exploring here is less about coverage and more about careful observation—what patterns repeat, and what changes with local realities. The lessons gathered in Tanzania sharpen how the broader mission adapts and responds.",
+      "In Moshi, the work opens to new relationships and wider community. The city serves as a hub where different efforts connect, where knowledge is shared across borders, and where the mission's impact ripples outward. This is where presence becomes partnership, and isolated work becomes part of a larger ecosystem of care.",
     credits: [
       { role: "Theme", name: "Explore" },
-      { role: "Place", name: "Shanty Town, Tanzania" },
-      { role: "Focus", name: "Cross-border perspective" },
+      { role: "Place", name: "Moshi, Tanzania" },
+      { role: "Focus", name: "Regional connections" },
     ],
   },
 ];
