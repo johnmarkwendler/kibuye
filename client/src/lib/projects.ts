@@ -59,7 +59,8 @@ export const projects: Project[] = [
     title: "KIBUYE",
     year: "2026 · Burundi",
     category: "HOME",
-    image: "/images/project-still-breathing.png",
+    image: "/images/kibuye.png",
+    video: "/images/kibuye-video.mov",
     slug: "kibuye",
     client: "Field Journal",
     overview:
