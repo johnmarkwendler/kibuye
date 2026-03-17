@@ -18,7 +18,6 @@ const services = [
 ];
 
 const clientLogos = [
-  "BRUSSELS",
   "BUJUMBURA",
   "DAR ES SALAAM",
   "KILIMANJARO",
