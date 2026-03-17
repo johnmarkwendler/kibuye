@@ -77,7 +77,7 @@ export const projects: Project[] = [
     title: "MOSHI",
     year: "2026 · Tanzania",
     category: "EXPLORE",
-    image: "/images/project-light-between.png",
+    image: "/images/moshi.jpeg",
     slug: "moshi",
     client: "Field Journal",
     overview:
