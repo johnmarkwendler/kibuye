@@ -45,6 +45,7 @@ export const projects: Project[] = [
     year: "1953 & 2026 · Belgium",
     category: "BEGINNING",
     image: brusselsImg,
+    video: brusselsVideo,
     slug: "brussels",
     client: "Family History",
     overview:
@@ -61,7 +62,6 @@ export const projects: Project[] = [
     year: "2026 · Burundi",
     category: "ARRIVAL",
     image: "/images/project-echoes-of-us.png",
-    video: brusselsVideo,
     slug: "bujumbura",
     client: "Field Journal",
     overview:
