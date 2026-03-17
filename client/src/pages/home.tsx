@@ -18,10 +18,10 @@ const services = [
 ];
 
 const clientLogos = [
+  "KISANGANI",
   "BUJUMBURA",
-  "DAR ES SALAAM",
-  "KILIMANJARO",
-  "DOHA",
+  "KIBUYE",
+  "MOSHI",
 ];
 
 function LiveClock() {
