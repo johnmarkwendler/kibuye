@@ -1,5 +1,3 @@
-import bujumburaSrc from "@assets/IMG_0144_1773695294114.mov";
-
 export interface Project {
   title: string;
   year: string;
@@ -44,7 +42,7 @@ export const projects: Project[] = [
     year: "2026 · Burundi",
     category: "ARRIVAL",
     image: "/images/project-echoes-of-us.png",
-    video: bujumburaSrc,
+    video: "/images/bujumbura-video.mov",
     slug: "bujumbura",
     client: "Field Journal",
     overview:
