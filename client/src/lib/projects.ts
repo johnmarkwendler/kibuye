@@ -37,7 +37,7 @@ export const projects: Project[] = [
     overview:
       "Bujumbura marks the first landing point, where the mission shifts from planning to presence.",
     description:
-      "Arrival in Bujumbura is equal parts orientation and emotion: heat, noise, and immediate movement. It is the threshold where family history, faith, and practical service finally meet the ground. Early moments here set the tone for everything that follows—watching closely, listening first, and learning the pace of place.",
+      "Arrival in Bujumbura is equal parts orientation and emotion: heat, noise, and immediate movement. It is the threshold where family history, faith, and practical service finally meet the ground. Early moments here set the tone for everything that follows—watching closely, listening first, and learning the pace of place. Université Évangélique en Afrique's medical school is one of the region's most important training grounds for the next generation of doctors and healthcare workers. Their commitment to faith-based, community-centered medical education makes them a key partner in building lasting capacity across Central Africa. Hope Africa University is a Burundian institution training students in health, education, and community development—fields that shape the country's future from the inside out. Partnering with Hope Africa means investing in leaders who will serve their own communities for decades to come.",
     postImages: [
       { src: "/images/bujumbura-1.jpeg", alt: "Arriving in Bujumbura at night" },
       { src: "/images/bujumbura-2.jpeg", alt: "Meeting with local partners in Bujumbura" },
