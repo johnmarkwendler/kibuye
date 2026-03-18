@@ -97,7 +97,7 @@ function Lightbox({
         </>
       )}
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/30 text-xs tracking-[0.2em] uppercase">
+      <div className="absolute bottom-5 right-6 text-white/30 text-xs tracking-[0.2em] uppercase">
         {currentIndex + 1} / {images.length}
       </div>
     </motion.div>
