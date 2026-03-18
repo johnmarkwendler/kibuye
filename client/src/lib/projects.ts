@@ -62,6 +62,11 @@ export const projects: Project[] = [
       "Kibuye becomes home base, where daily routines reveal what lasting presence really requires.",
     description:
       "In Kibuye, work is measured less by milestones and more by relationships built over ordinary days. The town is where people are known by name, where needs are specific, and where service becomes personal. Home here means returning each day with deeper context and shared commitment.",
+    postImages: [
+      { src: "/images/kibuye-1.jpeg", alt: "Team gathering in Kibuye" },
+      { src: "/images/kibuye-2.jpeg", alt: "Kibuye Hope Hospital emergency entrance" },
+      { src: "/images/kibuye-3.jpeg", alt: "Inside Kibuye Hope Hospital ward" },
+    ],
     credits: [
       { role: "Theme", name: "Home" },
       { role: "Place", name: "Kibuye, Burundi" },
