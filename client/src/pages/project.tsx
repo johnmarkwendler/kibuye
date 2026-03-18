@@ -1,9 +1,108 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRoute, Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useSmoothScroll, useLenisScrollTo } from "@/components/smooth-scroll";
 import { getProjectBySlug, getOtherProjects } from "@/lib/projects";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react";
+
+type GalleryImage = { src: string; alt: string; caption?: string };
+
+function Lightbox({
+  images,
+  initialIndex,
+  onClose,
+}: {
+  images: GalleryImage[];
+  initialIndex: number;
+  onClose: () => void;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
+
+  const goTo = useCallback(
+    (index: number) => {
+      setCurrentIndex((index + images.length) % images.length);
+    },
+    [images.length]
+  );
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") goTo(currentIndex - 1);
+      if (e.key === "ArrowRight") goTo(currentIndex + 1);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [currentIndex, goTo, onClose]);
+
+  const current = images[currentIndex];
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={onClose}
+      data-testid="lightbox-overlay"
+    >
+      <button
+        className="absolute top-5 right-5 text-white/50 hover:text-white transition-colors p-2"
+        onClick={onClose}
+        data-testid="button-lightbox-close"
+      >
+        <X className="w-6 h-6" />
+      </button>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          className="relative flex flex-col items-center px-16 max-w-[90vw]"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.96 }}
+          transition={{ duration: 0.2 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <img
+            src={current.src}
+            alt={current.alt}
+            className="max-h-[80vh] max-w-full object-contain"
+          />
+          {current.caption && (
+            <p className="text-white/40 text-xs tracking-[0.1em] uppercase mt-4">
+              {current.caption}
+            </p>
+          )}
+        </motion.div>
+      </AnimatePresence>
+
+      {images.length > 1 && (
+        <>
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors p-2"
+            onClick={(e) => { e.stopPropagation(); goTo(currentIndex - 1); }}
+            data-testid="button-lightbox-prev"
+          >
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors p-2"
+            onClick={(e) => { e.stopPropagation(); goTo(currentIndex + 1); }}
+            data-testid="button-lightbox-next"
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
+        </>
+      )}
+
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/30 text-xs tracking-[0.2em] uppercase">
+        {currentIndex + 1} / {images.length}
+      </div>
+    </motion.div>
+  );
+}
 
 function Navbar() {
   const scrollTo = useLenisScrollTo();
@@ -56,6 +155,7 @@ export default function ProjectPage() {
   const slug = params?.slug || "";
   const project = getProjectBySlug(slug);
   const otherProjects = getOtherProjects(slug);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -185,23 +285,41 @@ export default function ProjectPage() {
           <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mt-16 md:mt-24" />
 
           {project.postImages?.length ? (
-            <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-              {project.postImages.map((image) => (
-                <figure key={image.src} className="space-y-3" data-testid={`image-post-${image.src.split('/').pop()}`}>
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-auto object-cover border border-white/10"
-                    loading="lazy"
+            <>
+              <div className="mt-14 md:mt-20 columns-1 sm:columns-2 lg:columns-3 gap-4">
+                {project.postImages.map((image, index) => (
+                  <figure
+                    key={image.src}
+                    className="break-inside-avoid mb-4 cursor-pointer group relative overflow-hidden"
+                    onClick={() => setLightboxIndex(index)}
+                    data-testid={`image-post-${image.src.split('/').pop()}`}
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all duration-300 flex items-center justify-center">
+                        <span className="text-white text-xs tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          View
+                        </span>
+                      </div>
+                    </div>
+                  </figure>
+                ))}
+              </div>
+              <AnimatePresence>
+                {lightboxIndex !== null && (
+                  <Lightbox
+                    images={project.postImages}
+                    initialIndex={lightboxIndex}
+                    onClose={() => setLightboxIndex(null)}
                   />
-                  {image.caption ? (
-                    <figcaption className="text-white/50 text-xs tracking-[0.08em] uppercase">
-                      {image.caption}
-                    </figcaption>
-                  ) : null}
-                </figure>
-              ))}
-            </div>
+                )}
+              </AnimatePresence>
+            </>
           ) : null}
         </div>
       </section>
