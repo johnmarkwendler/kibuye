@@ -38,6 +38,12 @@ export const projects: Project[] = [
       "Bujumbura marks the first landing point, where the mission shifts from planning to presence.",
     description:
       "Arrival in Bujumbura is equal parts orientation and emotion: heat, noise, and immediate movement. It is the threshold where family history, faith, and practical service finally meet the ground. Early moments here set the tone for everything that follows—watching closely, listening first, and learning the pace of place.",
+    postImages: [
+      { src: "/images/bujumbura-1.jpeg", alt: "Arriving in Bujumbura at night" },
+      { src: "/images/bujumbura-2.jpeg", alt: "Meeting with local partners in Bujumbura" },
+      { src: "/images/bujumbura-3.jpeg", alt: "Team gathering in Bujumbura" },
+      { src: "/images/bujumbura-4.jpeg", alt: "Busy market scene in Burundi" },
+    ],
     credits: [
       { role: "Theme", name: "Arrival" },
       { role: "Place", name: "Bujumbura, Burundi" },
