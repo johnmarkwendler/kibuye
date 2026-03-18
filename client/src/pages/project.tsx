@@ -206,6 +206,7 @@ export default function ProjectPage() {
         </div>
       </section>
 
+      {project.credits?.length > 0 && (
       <section className="relative bg-[#0A0A0A] py-16 md:py-24 px-6 md:px-10" data-testid="section-project-credits">
         <div className="max-w-[1400px] mx-auto">
           <motion.h3
@@ -242,6 +243,7 @@ export default function ProjectPage() {
           </div>
         </div>
       </section>
+      )}
 
       <section className="relative bg-[#0A0A0A] py-20 md:py-32 px-6 md:px-10" data-testid="section-more-projects">
         <div className="max-w-[1400px] mx-auto">

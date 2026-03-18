@@ -24,18 +24,7 @@ export const projects: Project[] = [
       "A family origin story: my grandfather's rescue and survival in Kisangani during the Congo Crisis.",
     description:
       "My grandfather, Delbert Carper, along with his wife and young daughter, were rescued from Kisangani (present-day Democratic Republic of Congo) during the 1964 crisis—an experience later told in Out of the Jaws of the Lion. This is the actual inside-cover rescue-plane photo from Homer Dowdy's book, showing my grandfather at far right, moments after the rescue from Stanleyville.",
-    postImages: [
-      {
-        src: "/images/project-of-earth.png",
-        alt: "Tree-lined street in Kisangani",
-        caption: "Tree-lined street scene from Kisangani.",
-      },
-    ],
-    credits: [
-      { role: "Subject", name: "Delbert Carper (My Grandfather)" },
-      { role: "Book", name: "Out of the Jaws of the Lion" },
-      { role: "Place", name: "Kisangani (DRC)" },
-    ],
+    credits: [],
   },
   {
     title: "BUJUMBURA",
